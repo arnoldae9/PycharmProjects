@@ -1,4 +1,4 @@
-data = open('scpb1.txt','r')  # abre el archivo
+data = open('scp61.txt','r')  # abre el archivo
 datos = data.read().split("\n") # lee los elementos del archivo
 #print(datos)
 #obtener numero de regiones y centros:
@@ -108,7 +108,7 @@ while subconjuntos2 != []:
     #print(remover)
         #elimina las listas dependiendo de la lista remover
     subconjuntos2 = [palabra for index, palabra in enumerate(subconjuntos2) if(index not in remover)]
-    print(subconjuntos2)
+    #print(subconjuntos2)
 #print(solucion)
 
 #funcion para ordenar las listas por subconjunto de menor a mayor

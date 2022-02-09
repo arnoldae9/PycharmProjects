@@ -1,0 +1,9 @@
+Cantidad de Regiones: 50 
+Cantidad de Centros: 500 
+Los centros seleccionados son: 
+     1 
+     5 
+     113 
+     21 
+     65 
+Con un costo total de: 5 
