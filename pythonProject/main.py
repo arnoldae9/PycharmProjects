@@ -1,5 +1,5 @@
 import numpy as np
-data = open('tsp225.tsp','r')  # abre el archivo
+data = open('a280.tsp','r')  # abre el archivo
 datos = data.read().split("\n") # lee los elementos del archivo
 lista = []
 #crear una lista con los subconjuntos
@@ -7,7 +7,7 @@ subconjuntos = []
 A = []
 stop = ['E0F']
 for item in datos:
-    if datos.index(item) >= 6 and datos.index(item) < 231:
+    if datos.index(item) >= 6 and datos.index(item) < 286:
         A.append(item.split( ))
 # print(A)
 nombre = datos[0]
@@ -44,7 +44,7 @@ def menor(lista):
                 min = x
     return min
 limite=[]
-for k in range(225):
+for k in range(280):
     limite.append(k)
 
 nodoi = 1
@@ -84,8 +84,8 @@ while set(visitados) != set(limite) :
 distancia2 = 0
 for i in visitados:
     for j in visitados:
-        if i != j:
-            if i - j ==1:
+        if visitados.index(i) != visitados.index(j):
+            if visitados.index(i) - visitados.index(j) ==1:
                 distancia2 = distancia2 + matriz[i][j]
 print(distancia2)
 #
