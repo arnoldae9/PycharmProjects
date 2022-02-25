@@ -1,11 +1,11 @@
 import numpy as np
-data = open('pr76.tsp','r')  # abre el archivo
+data = open('a280.tsp','r')  # abre el archivo
 datos = data.read().split("\n") # lee los elementos del archivo
 lista = []
 nombre = datos[0]
 dimension = datos[3].split( )
 #arreglar el detalle con el txt ch130 ya que se tiene que cambiar a 1
-dim = int(dimension[2])
+dim = int(dimension[1])
 print(nombre)
 print(dim)
 #crear una lista con los subconjuntos
