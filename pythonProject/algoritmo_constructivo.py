@@ -1,5 +1,6 @@
 import numpy as np
-data = open('a280.tsp', 'r')  # abre el archivo
+import random
+data = open('lin105.tsp', 'r')  # abre el archivo
 datos = data.read().split("\n")  # lee los elementos del archivo
 lista = []
 nombre = datos[0]
@@ -8,7 +9,7 @@ dimension = datos[3].split()
 dim = int(dimension[1])
 print(nombre)
 print(dim)
-#FIXME crear una lista con los subconjuntos
+# crear una lista con los subconjuntos
 subconjuntos = []
 A = []
 stop = ['E0F']
@@ -24,9 +25,7 @@ for b in A:
 A = np.array(A)
 # print(A)
 
-visitados = []
 # función de distancia
-
 def distancia(a, b):
     return ((a[1]-b[1])**(2)+(a[2]-b[2])**(2))**0.5
 
@@ -39,7 +38,7 @@ for i in range(len(A)):
     matriz.append(lista)
     lista = []
 matriz = np.array(matriz)
-print(matriz)
+# print(matriz)
 
 # print(len(A))
 # print(matriz2)
@@ -59,38 +58,59 @@ def menor(lista):
 limite = []
 for k in range(dim):
     limite.append(k)
+
 print("¿Con que nodo deseas empezar? \n")
 nodoi = int(input())
-while len(visitados) <= dim:
+visitados = []
+alfa = float(input("introduzca el valor de alfa: "))
+print(alfa)
+while len(visitados) <= 280:
     if nodoi not in visitados:
         visitados.append(nodoi)
     else:
         break
-    min = np.amax(matriz[nodoi])
-    # print(min)
     novisitados = set(limite) - set(visitados)
-    # print(novisitados)
+    #TODO el código se rompe cuando la lista novisitados esta vacia.
+    listcostdisp = []
     for i in novisitados:
-        # print(i)
-        item = matriz[nodoi][i]
-        if item < min:
-            min = item
-    resultado = np.where(matriz[nodoi] == min)
-    for item in resultado[0]:
-        item = int(item)
-        if item in novisitados:
-            nodoi = item
+        # costosdisponibles = costdisp
+        costdisp = matriz[nodoi][i]
+        listcostdisp.append(costdisp)
+        # print(listcostdisp)
+    if len(listcostdisp) >= 2: 
+        max = np.max(listcostdisp)
+        # print(max)
+        min = np.min(listcostdisp)
+        # print(min)
+        rango = max - min
+        cijmin = min+min*alfa
+        aleatorios = []
+        for item in listcostdisp:
+            if item <= cijmin:
+                 aleatorios.append(item)
+        aleatorios2 = np.where(matriz[nodoi] == item )
+        aleatorios2 = np.array(aleatorios2).ravel().tolist()
+        seleccionables = []
+        for item in aleatorios2:
+            if item not in visitados and item not in seleccionables:
+                seleccionables.append(item)        
+        nodoi = np.random.choice(seleccionables)
+        if len(seleccionables) == 1:
+            nodoi = seleccionables[0]
+        # print(nodoi)
+        # print(nodoi)
+    else:
+        for item in range(dim):
+          if item not in visitados:
+            x = item
+        visitados.append(x)
+        break
     # print(nodoi)
-    # print("el minimo es:")
-    # print(min)
-
-    # print(nodoi)
-
-    # for item in range(280):
-    #     if item not in visitados:
-    #         print(item)
-#TODO se calcula la solución obtenida por el algoritmo de construcción
-print(len(visitados))
+# print(visitados)
+# print(len(visitados))
+for item in range(dim):
+          if item not in visitados:
+            print(item)
 distancia2 = 0
 for i in visitados:
     for j in visitados:
@@ -100,6 +120,7 @@ for i in visitados:
 distanciatotal = distancia2 + matriz[visitados[-1]][visitados[0]]
 print(distanciatotal)
 distanciainicial = distanciatotal
+
 
 #TODO inicio de la busqueda local
 iter = visitados
@@ -215,32 +236,3 @@ with open('resultados.txt', 'w') as f:
         item2 = item + 1
         f.write("%s \n" % item2)
 
-
-#
-# data = open('tsp225.opt.tour','r')  # abre el archivo
-# datos = data.read().split("\n") # lee los elementos del archivo
-# lista = []
-# #crear una lista con los subconjuntos
-# subconjuntos = []
-# A = []
-# stop = ['E0F']
-# for item in datos:
-#     if datos.index(item) >= 6 and datos.index(item) < 231:
-#         A.extend(item.split( ))
-# # print(A)
-# nombre = datos[0]
-# print(nombre)
-# #convertir a enteros
-# B=[]
-# for b in A:
-#     B.append(int(b))
-# print(B)
-#
-#
-# distancia2 = 0
-# for i in B:
-#     for j in B:
-#         if i != j:
-#             if i - j ==1:
-#                 distancia2 = distancia2 + matriz[i][j]
-# print(distancia2)
