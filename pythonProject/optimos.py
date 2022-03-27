@@ -1,6 +1,7 @@
 import numpy as np
 import random
 import os
+#TODO Como proyecto personal, utilizar funciones y clases para recortar el código
 
 #TODO Selección de los archivos:
 direccion = '/home/arnold/PycharmProjects/pythonProject'
@@ -255,18 +256,7 @@ for archivo in tsp:
                     print("El total de la solucion es: ", distanciatotal)
                 else:
                     print("no se cambio")
-        # hacer un def para la función objetivo
             print(iter)
-        # visitadosasterisco = iter
-        # distancia2 = 0
-        # for i in visitadosasterisco:
-        #     for j in visitadosasterisco:
-        #         if visitadosasterisco.index(i) != visitadosasterisco.index(j):
-        #             if visitadosasterisco.index(i) - visitadosasterisco.index(j) ==1:
-        #                 distancia2 = distancia2 + matriz[i][j]
-        # distanciatotal = distancia2 + matriz[visitadosasterisco[-1]][visitadosasterisco[0]]
-        # print("El total de la solucion es: ", distanciatotal)
-
         #TODO crea la escritura en un archivo txt
         visitadosasterisco = iter
         distancia2 = 0
